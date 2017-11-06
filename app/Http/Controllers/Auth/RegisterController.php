@@ -81,13 +81,13 @@ class RegisterController extends Controller
 
         Mail::to($user->email)->send(new ConfirmationEmail($user));
 
-        return back()->with('status', 'Por favor, confirme seu email');
+        return back()->with('status', 'Um e-mail de confirmação foi enviado para o endereço informado');
     }
 
     public function confirmEmail($token)
     {
         User::whereToken($token)->firstOrFail()->hasVerified();
 
-        return redirect('login')->with('status', 'Confirmação realizada, por favor realize o login.');
+        return redirect('login')->with('status', 'E-mail confirmado, por favor realize o login.');
     }
 }
